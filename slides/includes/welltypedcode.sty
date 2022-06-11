@@ -1,0 +1,21 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{welltypedcode}[2019/10/06 Well-Typed code environment]
+
+\newenvironment{codehscode}%
+  {\begin{codeblock}\def\@currenvir{hscode}\hscodestyle\(\parray}%
+  {\endparray\)\end{codeblock}}
+
+\newcommand\codehs{\sethscode{codehscode}}
+
+\codehs
+
+\def\@hscode{hscode}%
+
+\newcommand\hsinline[1]{%
+  \ifx\@currenvir\@hscode
+    {\color{black}\ensuremath{#1}}
+  \else
+    \colorbox{welltypedcode}{\ensuremath{#1}}
+  \fi}
+
+\endinput

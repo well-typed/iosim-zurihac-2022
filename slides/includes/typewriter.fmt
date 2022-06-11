@@ -1,0 +1,90 @@
+%if not lhs2tex_typewriter_fmt_read
+%let typewriter_fmt_read = True
+\ReadOnlyOnce{typewriter.fmt}%
+
+\renewcommand\Varid[1]{\texttt{#1}}
+\renewcommand\Conid[1]{\texttt{#1}}
+\renewcommand\keyw[1]{{\color{keyword}\textbf{\texttt{#1}}}}
+\renewcommand\opsym[1]{\mathrel{\texttt{#1}}}
+\newcommand\consym[1]{\mathrel{\con{#1}}}
+\newcommand\idsym[1]{\mathrel{\id{#1}}}
+\newcommand\tysym[1]{\mathrel{\ty{#1}}}
+\newcommand\kisym[1]{\mathrel{\ki{#1}}}
+\newcommand\texthat{\verb|^|}
+
+% increase math-mode horizontal spacing
+\thinmuskip=6mu
+\medmuskip=7mu
+\thickmuskip=8mu
+
+\newcommand\hstyarrow{\tysym{->}}
+\newcommand\hsplainarrow{\opsym{->}}
+\newcommand\hsplainarrowonce{\hsplainarrow\global\let\hsarrow=\hstyarrow}
+\let\hsarrow=\hstyarrow
+
+%if style /= newcode
+%subst backquoted a = "\mathbin{\texttt{`}" a "\texttt{`}}"
+%format \  = "\mathord{\texttt{\textbackslash}\,\global\let\hsarrow=\hsplainarrowonce}"
+%format [  = "\mathopen{\texttt{[}}"
+%format ]  = "\mathclose{\texttt{]}}"
+%format {  = "\mathopen{\texttt{\{}}"
+%format }  = "\mathclose{\texttt{\}}}"
+%format (  = "\mathopen{\texttt{(}}"
+%format )  = "\mathclose{\texttt{)}}"
+%format _  = "\mathord{\texttt{\_}}"
+%format -> = "\hsarrow"
+%format => = "\tysym{=>}"
+%format <- = "\mathrel{\texttt{<-}}"
+%format .  = "\idsym{.}"
+%format ,  = "\mathpunct{\texttt{,}}"
+%format =  = "\mathrel{\texttt{=}}"
+%format |  = "\mathrel{\texttt{|}}"
+%format :: = "\mathrel{\texttt{::}}"
+%format == = "\idsym{==}"
+%format <= = "\idsym{<=}"
+%format >= = "\idsym{>=}"
+%format /= = "\idsym{/=}"
+%format ` = "\texttt{`}"
+%format TCOMMAND = "\keyw{:t}"
+%format forall (x) = "\keyw{forall}" ^^ x
+%format qualified = "\keyw{qualified}"
+%format === = "\ensuremath{=}"
+%format NIL = "\con{[]}"
+%format (LITLIST (x)) = "\mathopen{\con{[}}" x "\mathclose{\con{]}}"
+%format (LIST (x)) = "\mathopen{\ty{[}}" x "\mathclose{\ty{]}}"
+%format LISTCON = "\ty{[]}"
+%format UNIT = "\ty{()}"
+%format MKUNIT = "\con{()}"
+%format (PAIR (x)(y)) = "\mathopen{\ty{(}}" x "\mathpunct{\ty{,}}" y "\mathclose{\ty{)}}"
+%format (MKPAIR (x)(y)) = "\mathopen{\con{(}}" x "\mathpunct{\con{,}}" y "\mathclose{\con{)}}"
+%format PAIRCON = "\ty{(,)}"
+%format MKPAIRCON = "\con{(,)}"
+%format (TRIPLE (x)(y)(z)) = "\mathopen{\ty{(}}" x "\mathpunct{\ty{,}}" y "\mathpunct{\ty{,}}" z "\mathclose{\ty{)}}"
+%format (MKTRIPLE (x)(y)(z)) = "\mathopen{\con{(}}" x "\mathpunct{\con{,}}" y "\mathpunct{\con{,}}" z "\mathclose{\con{)}}"
+%format TRIPLECON = "\ty{(,,)}"
+%format `PARR` = "\hsplainarrow "
+%format DOTS = "\texttt{\ldots}"
+%format EDOTS = "\texttt{\ldots}"
+%format (BANG x) = "\mathord{\texttt{!}}" x
+%else
+%format NIL = "[]"
+%format (LITLIST (x)) = "[" x "]"
+%format (LIST (x)) = "[" x "]"
+%format LISTCON = "[]"
+%format UNIT = "()"
+%format MKUNIT = "()"
+%format (PAIR (x)(y)) = "(" x "," y ")"
+%format (MKPAIR (x)(y)) = "(" x "," y ")"
+%format PAIRCON = "(,)"
+%format MKPAIRCON = "(,)"
+%format (TRIPLE (x)(y)(z)) = "(" x "," y "," z ")"
+%format (MKTRIPLE (x)(y)(z)) = "(" x "," y "," z ")"
+%format `PARR` = "->"
+%format DOTS = "undefined"
+%format EDOTS =
+%format (BANG x) = ! x
+%endif
+
+\EndFmtInput
+%
+%endif

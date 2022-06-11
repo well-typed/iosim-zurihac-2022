@@ -1,0 +1,20 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{welltypedfonts}[2019/10/06 Well-Typed default font settings]
+
+\RequirePackage{ifxetex}
+
+\ifxetex
+\RequirePackage{mathspec}
+\setsansfont{Open Sans}[Scale=0.85,Ligatures=TeX]
+% Ligatures=TeX causes strange effects for the mono font, such as
+% >> being replaced by a ligature ...
+\setmonofont{Inconsolata}
+%\setmonofont{Iosevka Term}[Scale=0.85]
+\RequirePackage[xspace]{ellipsis}
+\else
+\RequirePackage[T1]{fontenc}
+\RequirePackage[default,scale=0.85]{opensans}
+\RequirePackage{inconsolata}
+\fi
+
+\endinput

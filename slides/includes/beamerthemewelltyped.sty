@@ -1,0 +1,191 @@
+\mode<presentation>
+
+\newif\ifskillsmatter
+\DeclareOptionBeamer{skillsmatter}{\skillsmattertrue}
+\skillsmatterfalse
+\ProcessOptionsBeamer
+
+\RequirePackage{welltypedcolors}
+\RequirePackage{welltypedfonts}
+
+\pgfdeclareimage[height=4em]{welltypedlogotext}{wtnlogotext.pdf}
+\pgfdeclareimage[height=0.5cm]{welltypedlogo}{wtnlogo.pdf}
+\ifskillsmatter
+  \pgfdeclareimage[height=4em]{skillsmatterlarge}{skillsmatter.png}
+  \pgfdeclareimage[height=3ex]{skillsmatterlogo}{skillsmatter.png}
+\fi
+
+\setbeamercolor{structure}{fg=welltypedstructure}
+
+\setbeamercolor{background canvas}{fg=welltypedblack,bg=welltypedbackground}
+
+%\setbeamercolor{palette primary}{fg=welltypedblue,bg=white}
+%\setbeamercolor{palette secondary}{fg=welltypedblue,bg=white}
+%\setbeamercolor{palette tertiary}{fg=welltypedblue,bg=white}
+%\setbeamercolor{palette quaternary}{fg=welltypedblue,bg=white}
+
+\setbeamercolor{titlelike}{fg=welltypedwhite,bg=welltypeddarkblue}
+\setbeamercolor{title}{fg=welltypedwhite,bg=welltypeddarkblue}
+\setbeamercolor{subtitle}{fg=welltypedlightgray,bg=welltypeddarkblue}
+\setbeamercolor{author}{fg=welltypedlightgray,bg=welltypeddarkblue}
+\setbeamercolor{date}{fg=welltypedlightgray,bg=welltypeddarkblue}
+\setbeamerfont{title}{size=\LARGE}
+\setbeamerfont{author}{size=\large}
+\setbeamerfont{date}{size=\small}
+
+\setbeamercolor{block title}{fg=welltypedblue0,bg=welltypedyellow+x}
+\setbeamerfont{block title}{size=\large}
+%\setbeamercolor{block title alerted}{use=alerted text,fg=welltypedblue,bg=alerted text.fg!75!bg}
+%\setbeamercolor{block title example}{use=example text,fg=welltypedblue,bg=example text.fg!75!bg}
+
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=welltypedyellow+x}
+\setbeamercolor{code body}{parent=normal text,use=block title,bg=welltypedyellow+x}
+%\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!25!bg}
+%\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!25!bg}
+
+\setbeamercolor{sidebar}{bg=welltypedwhite}
+
+%\setbeamercolor{palette sidebar primary}{fg=welltypedblue}
+%\setbeamercolor{palette sidebar secondary}{fg=welltypedblue!75}
+%\setbeamercolor{palette sidebar tertiary}{fg=welltypedblue!75}
+%\setbeamercolor{palette sidebar quaternary}{fg=welltypedblue}
+\mode<handout>{%
+\colorlet{welltypedcode}{welltypedyellow!50!white}
+%\setbeamercolor{structure}{fg=welltypedblue!40!black}
+\setbeamercolor{background canvas}{fg=black,bg=white}
+%\setbeamercolor{titlelike}{fg=welltypedblue!40!black,bg=white}
+%\setbeamercolor{title}{fg=welltypedblue!40!black,bg=white}
+\setbeamercolor{block title}{fg=black,bg=welltypedyellow!50!white}
+%\setbeamercolor{block body}{parent=normal text,use=block title,bg=welltypedcode}
+%\setbeamercolor{code body}{parent=normal text,use=block title,bg=welltypedcode}
+}
+
+\defbeamertemplate*{section in toc shaded}{welltyped}[1][20]
+{\usebeamertemplate{section in toc}}
+
+\setbeamercolor{section in toc}{fg=welltypedblue}
+\setbeamercolor{section in toc shaded}{parent=normal text,use=block title,fg=welltypedyellow}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\defbeamertemplate*{itemize item}{welltyped}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
+
+%\usefonttheme[onlylarge]{structurebold}
+\setbeamertemplate{navigation symbols}{}
+
+\defbeamertemplate*{copyright year}{default}{\the\year}
+\defbeamertemplate*{copyright notice}{default}
+{%
+  \quad ---\quad Copyright \copyright\ \usebeamertemplate{copyright year} Well-Typed LLP
+}
+\defbeamertemplate{copyright notice}{none}{}
+
+\defbeamertemplate*{footline}{welltyped theme}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=7ex,dp=1ex,leftskip=.3cm,rightskip=.3cm]{fg=welltypeddarkblue,bg=white}%
+    \ifskillsmatter
+      \pgfuseimage{skillsmatterlogo}
+    \fi
+    \leavevmode
+    \hfill
+    \raisebox{1ex}{%
+    \mode<handout>{\thepage\currentsection}}%
+    \hfill
+    \pgfuseimage{welltypedlogo}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\mode<handout>{%
+\AtBeginDocument{%
+  \def\section#1{%
+    \gdef\currentsection{ -- #1 -- \inserttitle}%
+  }%
+  %\let\origtitle
+  %\def\title#1{%
+  %  \gdef\currentitle{#1}\origtitle{#1}%
+  %}%
+}}
+
+\gdef\currentsection{ -- \inserttitle}
+
+% Block-like code
+
+%\defbeamertemplateparent{blocks}{code begin,code end}{}
+
+\defbeamertemplate*{code begin}{welltyped theme}{%
+  \par\vskip\smallskipamount%
+  \usebeamerfont{code body}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{code body}%
+    \ifbeamercolorempty[bg]{code body}{\vskip-.25ex\relax}{\vskip-.75ex\relax}%
+}
+\defbeamertemplate*{code end}{default}
+  {\end{beamercolorbox}}
+
+\newenvironment<>{codeblock}{%
+  \begin{actionenv}#1%
+    \par%
+    \usebeamertemplate{code begin}}
+  {\par%
+    \usebeamertemplate{code end}%
+  \end{actionenv}%
+  \vskip-\smallskipamount}
+
+\defbeamertemplate*{WT title page}{default}[1][]
+{
+    \vskip-2em%
+    \begin{beamercolorbox}[sep=8pt,wd=\paperwidth,ht=.7\paperheight,#1]{title}
+      {\usebeamerfont{title}\inserttitle\par}%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%
+      \ifx\inserttitle\@empty%
+      \else
+        \vskip1em%
+        {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}%
+      \fi
+      \vskip0.5em%
+      {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\usebeamertemplate{copyright notice}\par}
+      \vskip1em%
+    \end{beamercolorbox}%
+    \vskip3em%
+    \begin{centering}
+    {\leavevmode\usebeamercolor[fg]{titlegraphic}\ifskillsmatter\pgfuseimage{skillsmatterlarge}\fi}
+    \hfill
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+    \end{centering}
+  \vfill
+}
+
+\titlegraphic{\pgfuseimage{welltypedlogotext}}
+
+\def\WTtitlepage{\usebeamertemplate*{WT title page}\@thanks}
+\def\titlepage{\ifbeamer@inframe\WTtitlepage\else\frame[plain]{\WTtitlepage}\fi}
+\let\maketitle\titlepage
+
+\newcommand<>\WTemph[1]{{\textbf#2{\color#2{welltypedblue0}#1}}}
+\let\emph\WTemph
+
+
+% (optional) make skips inflexible
+%\setlength\smallskipamount{3.0pt}%
+%\setlength\medskipamount{6.0pt}%
+%\setlength\bigskipamount{12.0pt}%
+
+\setlength\parskip{\medskipamount}
+
+% For some reason, overprints cause all sorts of spacing problems.
+% After every onslide in an overprint, \inoverprint should be used
+% to restore a sane environment.
+\newcommand\inoverprint{%
+  \setlength\parskip{\medskipamount}%
+  \raggedright}
+% If an overprint appears further down a slide, we want to correct
+% the spacing before.
+\newcommand\overprintcorrection{\vskip-9pt\relax}%
+
+\mode
+<all>

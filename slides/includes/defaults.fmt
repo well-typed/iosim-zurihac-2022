@@ -1,0 +1,13 @@
+%include polycode.fmt
+%include welltyped.fmt
+%include saverestore.fmt
+%include remember.fmt
+
+%include formats.fmt
+%include typewriter.fmt
+
+% For optional sections
+%let no  = style == newcode
+%let yes = True
+
+%options ghci -pgmL lhs2TeX -optL-P{LHS2TEXINPUTS}: -optL--pre
