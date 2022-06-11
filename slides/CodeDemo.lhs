@@ -46,6 +46,11 @@
 
 \begin{frame}{Materials for the Session}
 \centering
+
+\href{https://github.com/well-typed/iosim-zurihac-2022}{\alert{Slides \& Code}}
+\vskip0.2cm
+\emph{https://github.com/well-typed/iosim-zurihac-2022}
+
 \end{frame}
 
 \begin{frame}{What is IOSim?}
@@ -121,7 +126,7 @@ This session is going to try and cover all the basics in order for you to be abl
 \alert{IOSim} in a personal project. That includes:
 
 \begin{itemize}
-  \item Getting a project up and running: \href{test}{\emph{here!}};
+  \item Getting a project up and running: \href{https://github.com/well-typed/iosim-zurihac-2022}{\emph{here!}};
   \item Intro to (contravariant) logging;
   \item Look into how IOSim works;
   \item Look into testing;
@@ -490,36 +495,6 @@ writing to the the shared memory area. Useful properties that we ought to test:
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Some code}
-
-This:
-
-< x  +  y
-<    +  z
-
-\dots or that:
-
-< \ y -> let x = 2 in x * y
-
-\end{frame}
-
-\section{And more \dots}
-
-\begin{frame}{More code}
-%if style /= newcode
-%format x = "\id{x}"
-%format y = "\id{y}"
-%format test = "\id{test}"
-%endif
-
-> x = 2
-> y = 3
->
-> test = x + y
-
-With these definitions, |test| evaluates to
-\eval{test}.
-
-\end{frame}
+\section{Questions?}
 
 \end{document}
